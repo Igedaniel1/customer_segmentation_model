@@ -1,0 +1,28 @@
+Customer Default Prediction Project Documentation Objective
+
+Predict whether a customer will default using features like age, income, debt, employment years, etc. 
+
+The task is a binary classification problem with class imbalance (more non-defaulters than defaulters).
+
+1. Data Cleaning- Filled missing values in 'Defaulted' using mode to prevent training errors.
+
+2. Exploratory Data Analysis (EDA)- Boxplots were used to understand feature distributions by default status.- Correlation heatmaps revealed top features like DebtIncomeRatio (approximately 0.36).
+
+3. Feature Engineering- Applied log transformation to skewed features like income and debt.- Created 'TotalDebt' and 'IncomePerYearEmployed' for richer representations.- Attempted age binning but encountered conversion issues, highlighting need for encoding.
+
+4. Data Splitting & Imbalance Handling- Used stratified train-test split to maintain class ratios.- Used SMOTE from imbalanced-learn to balance classes in training data.- Handled SMOTE errors by removing NaNs and ensuring numeric-only input.
+
+5. Modeling- Tried RandomForestClassifier for robustness and interpretability.- Tried XGBoost for strong performance on structured data.- Tried HistGradientBoostingClassifier for speed and missing value handling.
+Customer Default Prediction Project Documentation
+
+6. Evaluation Strategy- Accuracy, Precision, Recall, and ROC AUC were used.- Lowered prediction threshold from 0.5 to improve recall(which is of greater importance in flagging actual defaulters) Used precision-recall and ROC curves for visual tuning.
+
+7. Checking Predictive Signal- Trained model on random labels. AUC approximately 0.41 confirms real signal in data.- If AUC had been high, would investigate data leakage or overfitting.
+
+Key Observations- Correlation showed weak predictive features.- Final model plateaued at Accuracy approximately 76%, Precision approximately 46%, Recall approximately 65%, ROC AUC approximately 0.80.
+
+Conclusion - I applied preprocessing, feature engineering, balancing, and signal tests to optimize and ensure reasonable model Performance but performance was limited due to poor feature quality of the data set. 
+
+Recommendation: Since most Companies prioritize flagging actual defaulters even if it's at the cost of flagging few non-defaulters incorrectly, this model is suitable for that, given the dataset used.
+
+Moving forward, i'll be improving the quality of the dataset by collecting more data, such as, credit history, payment timelines, etc.
